@@ -419,6 +419,15 @@ h1, h2, h3, h4, h5, h6 {
   display: none !important;
 }
 
+// 任何点击事件将无效
+.disabled,
+[disabled],
+input [disabled="disabled"],
+button [disabled="disabled"] {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
 figure {
   overflow: hidden;
   & a {
@@ -440,16 +449,19 @@ label {
   }
 }
 
+// 单行文本超出显示省略号
 %ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+// 样式带动画
 %transition {
   transition: all .4s ease .1s;
 }
 
+// 宏，带参数
 @mixin center-content($width: 1200px) {
   display: block;
   width: $width;
@@ -457,12 +469,14 @@ label {
   margin-left: auto;
 }
 
+// 响应式图片
 %responsive-img {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
+// 水平和垂直居中
 %middle-img {
   display: block;
   max-width: 100%;
@@ -471,6 +485,31 @@ label {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+// 选中文本背景色
+::selection {
+  background-color: $main-color;  // 页面主体背景颜色
+  color: #fff;
+}
+
+// 打印时显示 a 标签的链接
+@media print {
+  a[href]::after {
+    content: " (" attr(href) ") ";
+  }
+}
+
+// 光标的样式
+input,
+textarea,
+[contenteditable] {
+  caret-color: $themecolor;
+}
+
+// 禁用文本选中
+body {
+  user-select: none; 
 }
 
 /*===定义滚动条的样式===*/
@@ -491,8 +530,3 @@ div {
   }
 }
 
-/*===选中文本===*/
-::selection {
-  background-color: $main-color;  // 页面主体背景颜色
-  color: #fff;
-}
