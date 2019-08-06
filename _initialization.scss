@@ -131,8 +131,10 @@ a {
 //在 Chrome, Edge, IE, Opera 和 Safari 中为 abbr 元素添加下划线
 abbr[title] {
   border-bottom: 1px dotted #999;
-  cursor: pointer;
   text-decoration: underline;
+}
+abbr[title]:hover {
+  cursor: help;
 }
 
 //在 Safari 6 中防止下列元素通过后面的规则重复的应用程序的字体为粗体
